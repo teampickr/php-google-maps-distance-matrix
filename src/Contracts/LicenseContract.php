@@ -1,11 +1,11 @@
 <?php
 
-namespace Teampickr\DistanceMatrix\Contracts;
+namespace TeamPickr\DistanceMatrix\Contracts;
 
 /**
  * Interface LicenseContract
  *
- * @package Teampickr\DistanceMatrix\Contracts
+ * @package TeamPickr\DistanceMatrix\Contracts
  */
 interface LicenseContract
 {

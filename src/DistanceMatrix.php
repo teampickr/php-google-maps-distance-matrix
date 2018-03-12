@@ -1,8 +1,8 @@
 <?php
 
-namespace Teampickr\DistanceMatrix;
+namespace TeamPickr\DistanceMatrix;
 
-use Teampickr\DistanceMatrix\Contracts\LicenseContract;
+use TeamPickr\DistanceMatrix\Contracts\LicenseContract;
 
 class DistanceMatrix
 {
@@ -47,7 +47,7 @@ class DistanceMatrix
     /**
      * @param LicenseContract $license
      *
-     * @return \Teampickr\DistanceMatrix\DistanceMatrix
+     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
      */
     public function setLicense(LicenseContract $license)
     {
@@ -107,13 +107,21 @@ class DistanceMatrix
     /**
      * @param string $mode
      *
-     * @return \Teampickr\DistanceMatrix\DistanceMatrix
+     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
      */
     public function setMode(string $mode)
     {
         $this->mode = $mode;
 
         return $this;
+    }
+
+    /**
+     * @return DistanceMatrixResponse
+     */
+    public function request()
+    {
+        return (new DistanceMatrixRequest($this))->request();
     }
 
 }

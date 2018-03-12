@@ -1,11 +1,11 @@
 <?php
 
-namespace Teampickr\DistanceMatrix;
+namespace TeamPickr\DistanceMatrix;
 
 /**
  * Class DistanceMode
  *
- * @package Teampickr\DistanceMatrix
+ * @package TeamPickr\DistanceMatrix
  */
 class TravelMode
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Teampickr\DistanceMatrix\Tests;
+namespace TeamPickr\DistanceMatrix\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Teampickr\DistanceMatrix\Licenses\StandardLicense;
+use TeamPickr\DistanceMatrix\Licenses\StandardLicense;
 
 class StandardLicenseTest extends TestCase
 {

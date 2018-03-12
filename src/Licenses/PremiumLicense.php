@@ -1,8 +1,8 @@
 <?php
 
-namespace Teampickr\DistanceMatrix\Licenses;
+namespace TeamPickr\DistanceMatrix\Licenses;
 
-use Teampickr\DistanceMatrix\Contracts\LicenseContract;
+use TeamPickr\DistanceMatrix\Contracts\LicenseContract;
 
 class PremiumLicense implements LicenseContract
 {

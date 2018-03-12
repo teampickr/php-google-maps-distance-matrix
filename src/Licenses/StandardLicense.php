@@ -1,13 +1,13 @@
 <?php
 
-namespace Teampickr\DistanceMatrix\Licenses;
+namespace TeamPickr\DistanceMatrix\Licenses;
 
-use Teampickr\DistanceMatrix\Contracts\LicenseContract;
+use TeamPickr\DistanceMatrix\Contracts\LicenseContract;
 
 /**
  * Class StandardLicense
  *
- * @package Teampickr\DistanceMatrix\Licenses
+ * @package TeamPickr\DistanceMatrix\Licenses
  */
 class StandardLicense implements LicenseContract
 {
