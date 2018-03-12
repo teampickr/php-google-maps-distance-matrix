@@ -29,9 +29,11 @@ class StandardLicense implements LicenseContract
     }
 
     /**
+     * @param $url
+     *
      * @return string
      */
-    public function __toString()
+    public function getQueryStringParameters($url)
     {
         return $this->key;
     }

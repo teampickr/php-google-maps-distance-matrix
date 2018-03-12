@@ -9,5 +9,5 @@ namespace Teampickr\DistanceMatrix\Contracts;
  */
 interface LicenseContract
 {
-    public function __toString();
+    public function getQueryStringParameters($url);
 }
