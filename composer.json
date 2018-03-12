@@ -1,0 +1,24 @@
+{
+  "name": "teampickr/php-google-maps-distance-matrix",
+  "description": "PHP Implementation of the Google Maps Distance Matrix API",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jonathan Martin",
+      "email": "jm@pickr.works"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Teampickr\\DistanceMatrix\\": "src/",
+      "Teampickr\\DistanceMatrix\\Tests\\": "tests/"
+    }
+  }
+}
