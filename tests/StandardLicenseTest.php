@@ -12,6 +12,6 @@ class StandardLicenseTest extends TestCase
     {
         $license = new StandardLicense("key");
 
-        $this->assertEquals("key", $license->getQueryStringParameters("https://google.com/"));
+        $this->assertEquals(['key' => 'key'], $license->getQueryStringParameters("https://google.com/"));
     }
 }

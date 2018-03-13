@@ -2,6 +2,8 @@
 
 namespace TeamPickr\DistanceMatrix\Contracts;
 
+use GuzzleHttp\Psr7\Request;
+
 /**
  * Interface LicenseContract
  *
@@ -9,5 +11,5 @@ namespace TeamPickr\DistanceMatrix\Contracts;
  */
 interface LicenseContract
 {
-    public function getQueryStringParameters($url);
+    public function getQueryStringParameters(Request $request);
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace TeamPickr\DistanceMatrix;
+namespace TeamPickr\DistanceMatrix\Response;
 
 use Psr\Http\Message\ResponseInterface;
 
@@ -43,6 +43,34 @@ class DistanceMatrixResponse
     }
 
     /**
+     * @return null|string
+     */
+    public function error()
+    {
+        switch ($this->json['status']) {
+
+            case static::RESPONSE_INVALID_REQUEST:
+                return "Request provided was invalid.";
+
+            case static::RESPONSE_MAX_ELEMENTS_EXCEEDED:
+                return "Too many origins or destinations provided.";
+
+            case static::RESPONSE_OVER_QUERY_LIMIT:
+                return "You have exceeded the amount of API requests allowed in this time period.";
+
+            case static::RESPONSE_REQUEST_DENIED:
+                return "Your request was denied. Incorrect authentication?";
+
+            case static::RESPONSE_UNKNOWN_ERROR:
+                return "Unknown error occurred.";
+
+            default:
+                return null;
+        }
+
+    }
+
+    /**
      * @return array
      */
     public function origins()
@@ -63,6 +91,14 @@ class DistanceMatrixResponse
      */
     public function rows()
     {
-        return $this->json["rows"];
+        $rows = $this->json['rows'];
+
+        if (!count($rows)) {
+            return [];
+        }
+
+        return array_map(function ($row) {
+            return new Row($row);
+        }, $rows);
     }
 }

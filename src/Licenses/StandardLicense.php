@@ -2,6 +2,7 @@
 
 namespace TeamPickr\DistanceMatrix\Licenses;
 
+use GuzzleHttp\Psr7\Request;
 use TeamPickr\DistanceMatrix\Contracts\LicenseContract;
 
 /**
@@ -16,7 +17,7 @@ class StandardLicense implements LicenseContract
      *
      * @var string
      */
-    protected $key;
+    private $key;
 
     /**
      * StandardLicense constructor.
@@ -29,12 +30,14 @@ class StandardLicense implements LicenseContract
     }
 
     /**
-     * @param $url
+     * @param \GuzzleHttp\Psr7\Request $request
      *
-     * @return string
+     * @return array
      */
-    public function getQueryStringParameters($url)
+    public function getQueryStringParameters(Request $request): array
     {
-        return $this->key;
+        return [
+            'key' => $this->key,
+        ];
     }
 }

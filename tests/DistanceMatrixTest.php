@@ -2,35 +2,14 @@
 
 namespace TeamPickr\DistanceMatrix\Tests;
 
-use PHPUnit\Framework\TestCase;
 use TeamPickr\DistanceMatrix\DistanceMatrix;
-use TeamPickr\DistanceMatrix\DistanceMatrixResponse;
+use TeamPickr\DistanceMatrix\Response\DistanceMatrixResponse;
+use TeamPickr\DistanceMatrix\Response\Element;
 use TeamPickr\DistanceMatrix\TravelMode;
 use TeamPickr\DistanceMatrix\Licenses\StandardLicense;
 
 class DistanceMatrixTest extends AbstractTestCase
 {
-
-    /**
-     * @var string
-     */
-    protected $key;
-
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->key = getenv('GOOGLE_MAPS_KEY');
-    }
-
-    /**
-     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
-     */
-    protected function newInstance()
-    {
-        return new DistanceMatrix(new StandardLicense($this->key));
-    }
-
     /** @test */
     public function can_initialize_with_standard_license()
     {
@@ -65,15 +44,5 @@ class DistanceMatrixTest extends AbstractTestCase
         $instance = $this->newInstance()->setMode(TravelMode::CYCLING);
 
         $this->assertEquals('bicycling', $instance->getMode());
-    }
-
-    /** @test */
-    public function can_make_request()
-    {
-        $request = $this->newInstance()->addOrigin('norwich,gb')
-            ->addDestination('ipswich,gb')
-            ->request();
-
-        $this->assertInstanceOf(DistanceMatrixResponse::class, $request);
     }
 }

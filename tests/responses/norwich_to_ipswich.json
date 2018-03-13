@@ -1,0 +1,22 @@
+{
+  "destination_addresses" : [ "Ipswich, UK" ],
+  "origin_addresses" : [ "Norwich, UK" ],
+  "rows" : [
+    {
+      "elements" : [
+        {
+          "distance" : {
+            "text" : "71.6 km",
+            "value" : 71611
+          },
+          "duration" : {
+            "text" : "1 hour 19 mins",
+            "value" : 4721
+          },
+          "status" : "OK"
+        }
+      ]
+    }
+  ],
+  "status" : "OK"
+}

@@ -2,7 +2,10 @@
 
 namespace TeamPickr\DistanceMatrix;
 
+use DateTime;
 use TeamPickr\DistanceMatrix\Contracts\LicenseContract;
+use TeamPickr\DistanceMatrix\Request\DistanceMatrixRequest;
+use TeamPickr\DistanceMatrix\Response\DistanceMatrixResponse;
 
 class DistanceMatrix
 {
@@ -27,6 +30,26 @@ class DistanceMatrix
     protected $mode = TravelMode::DRIVING;
 
     /**
+     * @var null|string
+     */
+    protected $language = null;
+
+    /**
+     * @var null|int
+     */
+    protected $arrivalTime = null;
+
+    /**
+     * @var null|int
+     */
+    protected $departureTime = null;
+
+    /**
+     * @var string
+     */
+    protected $trafficModel = null;
+
+    /**
      * DistanceMatrix constructor.
      *
      * @param LicenseContract $license
@@ -47,7 +70,7 @@ class DistanceMatrix
     /**
      * @param LicenseContract $license
      *
-     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
+     * @return DistanceMatrix
      */
     public function setLicense(LicenseContract $license)
     {
@@ -107,7 +130,7 @@ class DistanceMatrix
     /**
      * @param string $mode
      *
-     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
+     * @return DistanceMatrix
      */
     public function setMode(string $mode)
     {
@@ -122,6 +145,94 @@ class DistanceMatrix
     public function request()
     {
         return (new DistanceMatrixRequest($this))->request();
+    }
+
+    /**
+     * @return null
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * @param null $language
+     *
+     * @return DistanceMatrix
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getArrivalTime()
+    {
+        return $this->arrivalTime;
+    }
+
+    /**
+     * @param int|\DateTime $arrivalTime
+     *
+     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
+     */
+    public function setArrivalTime($arrivalTime)
+    {
+        if ($arrivalTime instanceof DateTime) {
+            $this->arrivalTime = $arrivalTime->getTimestamp();
+        } else {
+            $this->arrivalTime = $arrivalTime;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getDepartureTime()
+    {
+        return $this->departureTime;
+    }
+
+    /**
+     * @param null $departureTime
+     *
+     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
+     */
+    public function setDepartureTime($departureTime)
+    {
+        if ($departureTime instanceof DateTime) {
+            $this->departureTime = $departureTime->getTimestamp();
+        } else {
+            $this->departureTime = $departureTime;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTrafficModel()
+    {
+        return $this->trafficModel;
+    }
+
+    /**
+     * @param string $trafficModel
+     *
+     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
+     */
+    public function setTrafficModel(string $trafficModel)
+    {
+        $this->trafficModel = $trafficModel;
+
+        return $this;
     }
 
 }
