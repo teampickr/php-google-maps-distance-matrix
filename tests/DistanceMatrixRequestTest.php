@@ -6,6 +6,8 @@ use DateTime;
 use TeamPickr\DistanceMatrix\Response\DistanceMatrixResponse;
 use TeamPickr\DistanceMatrix\Response\Element;
 use TeamPickr\DistanceMatrix\TrafficModel;
+use TeamPickr\DistanceMatrix\TransitMode;
+use TeamPickr\DistanceMatrix\TransitRouting;
 
 class DistanceMatrixRequestTest extends AbstractTestCase
 {
@@ -71,6 +73,84 @@ class DistanceMatrixRequestTest extends AbstractTestCase
         $request = $this->container[0]['request'];
 
         $this->assertContains("traffic_model=optimistic", $request->getUri()->getQuery());
+    }
+
+    /** @test */
+    public function adds_avoid_to_request()
+    {
+        $distanceMatrix = $this->newInstance()
+            ->addOrigin('norwich,gb')
+            ->addDestination('ipswich,gb')
+            ->avoidHighways();
+
+        $this->makeTestRequest($distanceMatrix, $this->makeSuccessfulMockHandler())->request();
+
+        $request = $this->container[0]['request'];
+
+        $this->assertContains("avoid=highways", $request->getUri()->getQuery());
+    }
+
+    /** @test */
+    public function adds_transit_mode_to_request()
+    {
+        $distanceMatrix = $this->newInstance()
+            ->addOrigin('norwich,gb')
+            ->addDestination('ipswich,gb')
+            ->addTransitMode(TransitMode::RAIL)
+            ->addTransitMode(TransitMode::BUS);
+
+        $this->makeTestRequest($distanceMatrix, $this->makeSuccessfulMockHandler())->request();
+
+        $request = $this->container[0]['request'];
+
+        $this->assertContains("transit_mode=" . urlencode("rail|bus"), $request->getUri()->getQuery());
+    }
+
+    /** @test */
+    public function adds_transit_routing_preference_request()
+    {
+        $distanceMatrix = $this->newInstance()
+            ->addOrigin('norwich,gb')
+            ->addDestination('ipswich,gb')
+            ->addTransitMode(TransitMode::RAIL)
+            ->setTransitRoutingPreference(TransitRouting::LESS_WALKING);
+
+        $this->makeTestRequest($distanceMatrix, $this->makeSuccessfulMockHandler())->request();
+
+        $request = $this->container[0]['request'];
+
+        $this->assertContains("transit_mode=rail", $request->getUri()->getQuery());
+        $this->assertContains("transit_routing_preference=less_walking", $request->getUri()->getQuery());
+    }
+
+    /** @test */
+    public function adds_units_to_request()
+    {
+        $distanceMatrix = $this->newInstance()
+            ->addOrigin('norwich,gb')
+            ->addDestination('ipswich,gb')
+            ->useMetricUnits();
+
+        $this->makeTestRequest($distanceMatrix, $this->makeSuccessfulMockHandler())->request();
+
+        $request = $this->container[0]['request'];
+
+        $this->assertContains("units=metric", $request->getUri()->getQuery());
+    }
+
+    /** @test */
+    public function adds_region_to_request()
+    {
+        $distanceMatrix = $this->newInstance()
+            ->addOrigin('norwich,gb')
+            ->addDestination('ipswich,gb')
+            ->setRegion('GB');
+
+        $this->makeTestRequest($distanceMatrix, $this->makeSuccessfulMockHandler())->request();
+
+        $request = $this->container[0]['request'];
+
+        $this->assertContains("region=GB", $request->getUri()->getQuery());
     }
 
     /** @test */

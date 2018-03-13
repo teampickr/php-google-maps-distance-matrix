@@ -70,17 +70,22 @@ class DistanceMatrixRequest
     protected function buildQuery()
     {
         $options = array_merge([
-            'origins'        => $this->buildOrigins(),
-            'destinations'   => $this->buildDestinations(),
-            'mode'           => $this->settings->getMode(),
-            'language'       => $this->settings->getLanguage(),
-            'arrival_time'   => $this->settings->getArrivalTime(),
-            'departure_time' => $this->settings->getDepartureTime(),
-            'traffic_model'  => $this->settings->getTrafficModel(),
+            'origins'                    => $this->buildOrigins(),
+            'destinations'               => $this->buildDestinations(),
+            'mode'                       => $this->settings->getMode(),
+            'units'                      => $this->settings->getUnits(),
+            'avoid'                      => $this->settings->getAvoid(),
+            'region'                     => $this->settings->getRegion(),
+            'language'                   => $this->settings->getLanguage(),
+            'arrival_time'               => $this->settings->getArrivalTime(),
+            'departure_time'             => $this->settings->getDepartureTime(),
+            'traffic_model'              => $this->settings->getTrafficModel(),
+            'transit_mode'               => $this->buildTransitMode(),
+            'transit_routing_preference' => $this->settings->getTransitRoutingPreference(),
         ]);
 
         return array_filter($options, function ($value) {
-            return $value !== null;
+            return $value !== null || $value === "";
         });
     }
 
@@ -98,6 +103,14 @@ class DistanceMatrixRequest
     protected function buildDestinations()
     {
         return implode("|", $this->settings->getDestinations());
+    }
+
+    /**
+     * @return string
+     */
+    protected function buildTransitMode()
+    {
+        return implode("|", $this->settings->getTransitMode());
     }
 
     /**

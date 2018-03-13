@@ -35,6 +35,21 @@ class DistanceMatrix
     protected $language = null;
 
     /**
+     * @var string
+     */
+    protected $units = null;
+
+    /**
+     * @var string
+     */
+    protected $region = null;
+
+    /**
+     * @var string
+     */
+    protected $avoid = null;
+
+    /**
      * @var null|int
      */
     protected $arrivalTime = null;
@@ -48,6 +63,16 @@ class DistanceMatrix
      * @var string
      */
     protected $trafficModel = null;
+
+    /**
+     * @var array
+     */
+    protected $transitMode = [];
+
+    /**
+     * @var string
+     */
+    protected $transitRoutingPreference = null;
 
     /**
      * DistanceMatrix constructor.
@@ -178,7 +203,7 @@ class DistanceMatrix
     /**
      * @param int|\DateTime $arrivalTime
      *
-     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
+     * @return DistanceMatrix
      */
     public function setArrivalTime($arrivalTime)
     {
@@ -202,7 +227,7 @@ class DistanceMatrix
     /**
      * @param null $departureTime
      *
-     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
+     * @return DistanceMatrix
      */
     public function setDepartureTime($departureTime)
     {
@@ -226,13 +251,161 @@ class DistanceMatrix
     /**
      * @param string $trafficModel
      *
-     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
+     * @return DistanceMatrix
      */
     public function setTrafficModel(string $trafficModel)
     {
         $this->trafficModel = $trafficModel;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTransitMode()
+    {
+        return $this->transitMode;
+    }
+
+    /**
+     * @param string $transitMode
+     *
+     * @return DistanceMatrix
+     */
+    public function addTransitMode(string $transitMode)
+    {
+        $this->transitMode[] = $transitMode;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTransitRoutingPreference()
+    {
+        return $this->transitRoutingPreference;
+    }
+
+    /**
+     * @param string $transitRoutingPreference
+     *
+     * @return DistanceMatrix
+     */
+    public function setTransitRoutingPreference(string $transitRoutingPreference)
+    {
+        $this->transitRoutingPreference = $transitRoutingPreference;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUnits()
+    {
+        return $this->units;
+    }
+
+    /**
+     * @param string $units
+     *
+     * @return DistanceMatrix
+     */
+    public function setUnits(string $units)
+    {
+        $this->units = $units;
+
+        return $this;
+    }
+
+    /**
+     * @return DistanceMatrix
+     */
+    public function useMetricUnits()
+    {
+        return $this->setUnits(Unit::METRIC);
+    }
+
+    /**
+     * @return DistanceMatrix
+     */
+    public function useImperialUnits()
+    {
+        return $this->setUnits(Unit::IMPERIAL);
+    }
+
+    /**
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param string $region
+     *
+     * @return DistanceMatrix
+     */
+    public function setRegion(string $region)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvoid()
+    {
+        return $this->avoid;
+    }
+
+    /**
+     * @param string $avoid
+     *
+     * @return DistanceMatrix
+     */
+    public function setAvoid(string $avoid)
+    {
+        $this->avoid = $avoid;
+
+        return $this;
+    }
+
+    /**
+     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
+     */
+    public function avoidTolls()
+    {
+        return $this->setAvoid(Avoid::TOLLS);
+    }
+
+    /**
+     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
+     */
+    public function avoidHighways()
+    {
+        return $this->setAvoid(Avoid::HIGHWAYS);
+    }
+
+    /**
+     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
+     */
+    public function avoidFerries()
+    {
+        return $this->setAvoid(Avoid::FERRIES);
+    }
+
+    /**
+     * @return \TeamPickr\DistanceMatrix\DistanceMatrix
+     */
+    public function avoidIndoor()
+    {
+        return $this->setAvoid(Avoid::INDOOR);
     }
 
 }
