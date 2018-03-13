@@ -85,6 +85,16 @@ class DistanceMatrix
     }
 
     /**
+     * @param \TeamPickr\DistanceMatrix\Contracts\LicenseContract $license
+     *
+     * @return static
+     */
+    public static function license(LicenseContract $license)
+    {
+        return new static($license);
+    }
+
+    /**
      * @return LicenseContract
      */
     public function getLicense(): LicenseContract
