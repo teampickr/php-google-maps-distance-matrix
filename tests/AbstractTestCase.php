@@ -29,7 +29,9 @@ abstract class AbstractTestCase extends TestCase
 
         require __DIR__ . '/../vendor/autoload.php';
 
-        (new Dotenv(__DIR__ . '/../'))->load();
+        if (file_exists(__DIR__ . '/../.env')) {
+            (new Dotenv(__DIR__ . '/../'))->load();
+        }
 
         $this->key = getenv('GOOGLE_MAPS_KEY');
     }
