@@ -26,5 +26,15 @@
       "TeamPickr\\DistanceMatrix\\": "src/",
       "TeamPickr\\DistanceMatrix\\Tests\\": "tests/"
     }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "TeamPickr\\DistanceMatrix\\Frameworks\\Laravel\\DistanceMatrixServiceProvider"
+      ],
+      "aliases": {
+        "DistanceMatrix": "TeamPickr\\DistanceMatrix\\Frameworks\\Laravel\\DistanceMatrix"
+      }
+    }
   }
 }
