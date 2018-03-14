@@ -24,10 +24,10 @@ class DistanceMatrixServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->mergeConfigFrom(__DIR__ . '/config.php', 'google');
+        $this->mergeConfigFrom(__DIR__ . '/google.php', 'google');
 
         $this->publishes([
-            __DIR__ . '/config.php' => config_path('google.php'),
+            __DIR__ . '/google.php' => config_path('google.php'),
         ], 'config');
     }
 
