@@ -14,7 +14,7 @@ class DistanceMatrixServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(DistanceMatrix::class, function () {
+        $this->app->bind(DistanceMatrix::class, function () {
             return new DistanceMatrix($this->getLicense());
         });
     }
@@ -24,6 +24,8 @@ class DistanceMatrixServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->mergeConfigFrom(__DIR__ . '/config.php', 'google');
+
         $this->publishes([
             __DIR__ . '/config.php' => config_path('google.php'),
         ], 'config');
