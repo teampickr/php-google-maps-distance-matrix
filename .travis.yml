@@ -6,3 +6,8 @@ php:
 
 before_script: composer install
 script: phpunit --configuration phpunit.xml
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
