@@ -61,6 +61,6 @@ class Element
      */
     public function durationText()
     {
-        return $this->element['distance']['text'];
+        return $this->element['duration']['text'];
     }
 }
