@@ -101,4 +101,20 @@ class DistanceMatrixResponse
             return new Row($row);
         }, $rows);
     }
+
+    /**
+     * @param int $row
+     *
+     * @return \TeamPickr\DistanceMatrix\Response\Row
+     */
+    public function row(int $row = 0)
+    {
+        $rows = $this->rows();
+
+        if (array_key_exists($row, $rows)) {
+            return $rows[$row];
+        }
+
+        return null;
+    }
 }

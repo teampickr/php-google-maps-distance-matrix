@@ -34,4 +34,20 @@ class Row
             return new Element($element);
         }, $elements);
     }
+
+    /**
+     * @param int $element
+     *
+     * @return \TeamPickr\DistanceMatrix\Response\Element
+     */
+    public function element(int $element = 0)
+    {
+        $elements = $this->elements();
+
+        if(array_key_exists($element, $elements)) {
+            return $elements[$element];
+        }
+
+        return null;
+    }
 }
