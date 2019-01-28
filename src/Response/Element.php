@@ -37,7 +37,7 @@ class Element
      */
     public function distance()
     {
-        return $this->element['distance']['value'];
+        return ! empty($this->element['distance']['value']) ? $this->element['distance']['value'] : null;
     }
 
     /**
@@ -45,7 +45,7 @@ class Element
      */
     public function distanceText()
     {
-        return $this->element['distance']['text'];
+        return ! empty($this->element['distance']['text']) ? $this->element['distance']['text'] : null;
     }
 
     /**
@@ -53,7 +53,7 @@ class Element
      */
     public function duration()
     {
-        return $this->element['duration']['value'];
+        return ! empty($this->element['duration']['value']) ? $this->element['duration']['value'] : null;
     }
 
     /**
@@ -61,6 +61,6 @@ class Element
      */
     public function durationText()
     {
-        return $this->element['duration']['text'];
+        return ! empty($this->element['duration']['text']) ? $this->element['duration']['text'] : null;
     }
 }
