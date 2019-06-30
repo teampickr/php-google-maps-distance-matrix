@@ -63,4 +63,20 @@ class Element
     {
         return ! empty($this->element['duration']['text']) ? $this->element['duration']['text'] : null;
     }
+
+    /**
+     * @return mixed
+     */
+    public function durationInTraffic()
+    {
+        return ! empty($this->element['duration_in_traffic']['value']) ? $this->element['duration_in_traffic']['value'] : null;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function durationInTrafficText()
+    {
+        return ! empty($this->element['duration_in_traffic']['text']) ? $this->element['duration_in_traffic']['text'] : null;
+    }
 }
