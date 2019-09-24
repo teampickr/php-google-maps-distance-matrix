@@ -2,6 +2,8 @@
 
 namespace TeamPickr\DistanceMatrix\Tests;
 
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use TeamPickr\DistanceMatrix\DistanceMatrix;
 use TeamPickr\DistanceMatrix\Licenses\PremiumLicense;
@@ -18,7 +20,9 @@ class PremiumLicenseTest extends AbstractTestCase
             ->addOrigin('norwich,gb')
             ->addDestination('ipswich,gb');
 
-        $this->makeTestRequest($distanceMatrix)->request();
+        $mock = new MockHandler([new Response(200)]);
+
+        $this->makeTestRequest($distanceMatrix, $mock)->request();
 
         $request = $this->container[0]['request'];
 
