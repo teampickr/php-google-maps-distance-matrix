@@ -8,7 +8,7 @@ There is support for both the Standard License and Premium/Enterprise License ty
 Install the package using composer:
 
 ```
-$ composer require teampickr/php-google-maps-distance-matrix
+$ composer require medeirosdev/php-google-maps-distance-matrix
 ```
 
 ## Frameworks
