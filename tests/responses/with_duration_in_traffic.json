@@ -1,0 +1,26 @@
+{
+  "destination_addresses" : [ "São Paulo, SP, Brasil" ],
+  "origin_addresses" : [ "Campinas - SP, Brasil" ],
+  "rows" : [
+    {
+      "elements" : [
+        {
+          "distance" : {
+            "text" : "95,8 km",
+            "value" : 95845
+          },
+          "duration" : {
+            "text" : "1 hora 14 minutos",
+            "value" : 4445
+          },
+          "duration_in_traffic" : {
+            "text" : "1 hora 32 minutos",
+            "value" : 5496
+          },
+          "status" : "OK"
+        }
+      ]
+    }
+  ],
+  "status" : "OK"
+}

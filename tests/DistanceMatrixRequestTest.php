@@ -168,4 +168,30 @@ class DistanceMatrixRequestTest extends AbstractTestCase
         $this->assertTrue($response->successful());
         $this->assertNotNull($response->successful());
     }
+
+
+    /** @test */
+    public function return_duration_in_traffic_request()
+    {
+        $date = 'now';
+
+        $distanceMatrix = $this->newInstance()
+            ->addOrigin('Campinas, SP, BR')
+            ->addDestination('Campinas - SP, Brasil')
+            ->setArrivalTime($date);
+
+        $response = $this->makeTestRequest($distanceMatrix, $this->makeSuccessfulWithDurationInTrafficMockHandler())->request();
+        $element = $response->rows()[0]->elements()[0];
+
+        $request = $this->container[0]['request'];
+
+        $this->assertContains("arrival_time=" . $date, $request->getUri()->getQuery());
+        $this->assertInstanceOf(DistanceMatrixResponse::class, $response);
+        $this->assertTrue($response->successful());
+        $this->assertNotNull($response->successful());
+        $this->assertInstanceOf(Element::class, $element);
+        $this->assertEquals(5496, $element->durationInTraffic());
+        $this->assertEquals('1 hora 32 minutos', $element->durationInTrafficText());
+
+    }
 }

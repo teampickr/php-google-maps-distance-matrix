@@ -66,4 +66,15 @@ abstract class AbstractTestCase extends TestCase
         ]);
     }
 
+
+    /**
+     * @return \GuzzleHttp\Handler\MockHandler
+     */
+    public function makeSuccessfulWithDurationInTrafficMockHandler()
+    {
+        return new MockHandler([
+            new Response(200, [], file_get_contents(__DIR__ . '/responses/with_duration_in_traffic.json')),
+        ]);
+    }
+
 }

@@ -21,7 +21,7 @@ class DistanceMatrixResponse
     /**
      * @var array
      */
-    protected $json;
+    public $json;
 
     /**
      * DistanceMatrixResponse constructor.
@@ -37,7 +37,7 @@ class DistanceMatrixResponse
     /**
      * @return bool
      */
-    public function successful()
+    public function successful(): bool
     {
         return $this->json['status'] === static::RESPONSE_OKAY;
     }
@@ -73,7 +73,7 @@ class DistanceMatrixResponse
     /**
      * @return array
      */
-    public function origins()
+    public function origins(): array
     {
         return $this->json["origin_addresses"];
     }
@@ -81,7 +81,7 @@ class DistanceMatrixResponse
     /**
      * @return array
      */
-    public function destinations()
+    public function destinations(): array
     {
         return $this->json["destination_addresses"];
     }
@@ -89,7 +89,7 @@ class DistanceMatrixResponse
     /**
      * @return array
      */
-    public function rows()
+    public function rows(): array
     {
         $rows = $this->json['rows'];
 
@@ -105,7 +105,7 @@ class DistanceMatrixResponse
     /**
      * @param int $row
      *
-     * @return \TeamPickr\DistanceMatrix\Response\Row
+     * @return null|\TeamPickr\DistanceMatrix\Response\Row
      */
     public function row(int $row = 0)
     {

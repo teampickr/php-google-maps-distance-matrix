@@ -104,7 +104,7 @@ $request = DistanceMatrix::license($license);
 $response = DistanceMatrix::license($license)
     ->addOrigin('norwich,gb')
     ->addDestination('52.603669, 1.223785')
-    ->response();
+    ->request();
    
 // I want to make the following but of API better,
 // as it looks horrible at the moment.
@@ -116,4 +116,12 @@ $distance = $element->distance();
 $distanceText = $element->distanceText();
 $duration = $element->duration();
 $durationText = $element->durationText();
+$durationInTraffic = $element->durationInTraffic();
+$durationInTrafficText = $element->durationInTrafficText();
+
+// or
+
+$response->json['destination_addresses'][0];
+$response->json['rows'][0]['elements'][0]['distance']['value'];
+$response->json['rows'][0]['elements'][0]['duration_in_traffic']['text'];
 ```
