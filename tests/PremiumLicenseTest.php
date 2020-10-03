@@ -4,10 +4,8 @@ namespace TeamPickr\DistanceMatrix\Tests;
 
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
 use TeamPickr\DistanceMatrix\DistanceMatrix;
 use TeamPickr\DistanceMatrix\Licenses\PremiumLicense;
-use TeamPickr\DistanceMatrix\Licenses\StandardLicense;
 
 class PremiumLicenseTest extends AbstractTestCase
 {
@@ -26,7 +24,7 @@ class PremiumLicenseTest extends AbstractTestCase
 
         $request = $this->container[0]['request'];
 
-        $this->assertContains("signature=", $request->getUri()->getQuery());
-        $this->assertContains("client=" . getenv('GOOGLE_MAPS_CLIENT_ID'), $request->getUri()->getQuery());
+        $this->assertStringContainsString("signature=", $request->getUri()->getQuery());
+        $this->assertStringContainsString("client=" . getenv('GOOGLE_MAPS_CLIENT_ID'), $request->getUri()->getQuery());
     }
 }
