@@ -23,14 +23,14 @@ abstract class AbstractTestCase extends TestCase
      */
     protected $container = [];
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
         require __DIR__ . '/../vendor/autoload.php';
 
         if (file_exists(__DIR__ . '/../.env')) {
-            (new Dotenv(__DIR__ . '/../'))->load();
+            (Dotenv::createImmutable('/../'))->load();
         }
 
         $this->key = getenv('GOOGLE_MAPS_KEY');

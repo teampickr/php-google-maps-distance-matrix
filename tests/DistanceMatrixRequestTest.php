@@ -23,7 +23,7 @@ class DistanceMatrixRequestTest extends AbstractTestCase
 
         $request = $this->container[0]['request'];
 
-        $this->assertContains("language=en-GB", $request->getUri()->getQuery());
+        $this->assertStringContainsString("language=en-GB", $request->getUri()->getQuery());
     }
 
     /** @test */
@@ -40,7 +40,7 @@ class DistanceMatrixRequestTest extends AbstractTestCase
 
         $request = $this->container[0]['request'];
 
-        $this->assertContains("arrival_time=" . $date->getTimestamp(), $request->getUri()->getQuery());
+        $this->assertStringContainsString("arrival_time=" . $date->getTimestamp(), $request->getUri()->getQuery());
     }
 
     /** @test */
@@ -57,7 +57,7 @@ class DistanceMatrixRequestTest extends AbstractTestCase
 
         $request = $this->container[0]['request'];
 
-        $this->assertContains("departure_time=" . $date->getTimestamp(), $request->getUri()->getQuery());
+        $this->assertStringContainsString("departure_time=" . $date->getTimestamp(), $request->getUri()->getQuery());
     }
 
     /** @test */
@@ -72,7 +72,7 @@ class DistanceMatrixRequestTest extends AbstractTestCase
 
         $request = $this->container[0]['request'];
 
-        $this->assertContains("traffic_model=optimistic", $request->getUri()->getQuery());
+        $this->assertStringContainsString("traffic_model=optimistic", $request->getUri()->getQuery());
     }
 
     /** @test */
@@ -87,7 +87,7 @@ class DistanceMatrixRequestTest extends AbstractTestCase
 
         $request = $this->container[0]['request'];
 
-        $this->assertContains("avoid=highways", $request->getUri()->getQuery());
+        $this->assertStringContainsString("avoid=highways", $request->getUri()->getQuery());
     }
 
     /** @test */
@@ -103,7 +103,7 @@ class DistanceMatrixRequestTest extends AbstractTestCase
 
         $request = $this->container[0]['request'];
 
-        $this->assertContains("transit_mode=" . urlencode("rail|bus"), $request->getUri()->getQuery());
+        $this->assertStringContainsString("transit_mode=" . urlencode("rail|bus"), $request->getUri()->getQuery());
     }
 
     /** @test */
@@ -119,8 +119,8 @@ class DistanceMatrixRequestTest extends AbstractTestCase
 
         $request = $this->container[0]['request'];
 
-        $this->assertContains("transit_mode=rail", $request->getUri()->getQuery());
-        $this->assertContains("transit_routing_preference=less_walking", $request->getUri()->getQuery());
+        $this->assertStringContainsString("transit_mode=rail", $request->getUri()->getQuery());
+        $this->assertStringContainsString("transit_routing_preference=less_walking", $request->getUri()->getQuery());
     }
 
     /** @test */
@@ -135,7 +135,7 @@ class DistanceMatrixRequestTest extends AbstractTestCase
 
         $request = $this->container[0]['request'];
 
-        $this->assertContains("units=metric", $request->getUri()->getQuery());
+        $this->assertStringContainsString("units=metric", $request->getUri()->getQuery());
     }
 
     /** @test */
@@ -150,7 +150,7 @@ class DistanceMatrixRequestTest extends AbstractTestCase
 
         $request = $this->container[0]['request'];
 
-        $this->assertContains("region=GB", $request->getUri()->getQuery());
+        $this->assertStringContainsString("region=GB", $request->getUri()->getQuery());
     }
 
     /** @test */
@@ -185,7 +185,7 @@ class DistanceMatrixRequestTest extends AbstractTestCase
 
         $request = $this->container[0]['request'];
 
-        $this->assertContains("arrival_time=" . $date, $request->getUri()->getQuery());
+        $this->assertStringContainsString("arrival_time=" . $date, $request->getUri()->getQuery());
         $this->assertInstanceOf(DistanceMatrixResponse::class, $response);
         $this->assertTrue($response->successful());
         $this->assertNotNull($response->successful());
